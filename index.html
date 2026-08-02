@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,6 +33,148 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        input, textarea, select {
+            width: 100%;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--accent-purple);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button.btn-generate {
+            width: 100%;
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: opacity 0.2s;
+        }
+
+        button.btn-generate:hover {
+            opacity: 0.9;
+        }
+
+        .output-section {
+            margin-top: 24px;
+            background: var(--bg-input);
+            border-radius: 8px;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .output-box {
+            font-family: monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            word-break: break-word;
+            color: var(--text-main);
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Prompt Master Pro</h1>
+    <p class="subtitle">Crea prompt professionali per la tua intelligenza artificiale</p>
+
+    <div class="container">
+        <div class="form-group">
+            <label for="task">Cosa vuoi che faccia l'IA?</label>
+            <textarea id="task" placeholder="Es. Scrivi un post per Instagram sul fitness..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="tone">Tono di voce</label>
+            <select id="tone">
+                <option value="professionale">Professionale</option>
+                <option value="persuasivo">Persuasivo / Vendita</option>
+                <option value="amichevole">Amichevole e informale</option>
+                <option value="creativo">Creativo</option>
+            </select>
+        </div>
+
+        <button class="btn-generate" onclick="generatePrompt()">Genera Prompt Ottimizzato</button>
+
+        <div class="output-section">
+            <label>Il tuo prompt pronto:</label>
+            <div id="output" class="output-box">Compila i campi sopra e clicca genera...</div>
+        </div>
+    </div>
+
+    <script>
+        function generatePrompt() {
+            const task = document.getElementById('task').value;
+            const tone = document.getElementById('tone').value;
+            
+            if(!task) {
+                alert('Inserisci prima cosa deve fare l\'IA!');
+                return;
+            }
+
+            const finalPrompt = `Agisci come un esperto del settore. Il tuo obiettivo principale è: ${task}. Utilizza un tono di voce ${tone}. Sii chiaro, dettagliato e strutturato nella risposta.`;
+            document.getElementById('output').innerText = finalPrompt;
+        }
+    </script>
+</body>
+</html>
         }
     </style>
 </head>
